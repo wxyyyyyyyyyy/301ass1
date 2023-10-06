@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>王心怡的计算器</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<style>
+    body {
+            font-family: Arial, sans-serif;
+            background-color: #69b0ebc0;
+            text-align: center;
+          
+        }
+.calculator {
+    width: 300px;
+    margin: 150px auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: pink;
+    box-shadow: 0 0 10px rgb(153, 61, 235);
+    
+}
+
+#result {
+    width: 90%;
+    margin-bottom: 10px;
+    padding: 5px;
+}
+
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 5px;
+}
+
+button {
+    padding: 5px;
+}
+
+</style>
+
+<body>
+    <div class="calculator">
+        <input type="text" id="result" readonly>
+        <div class="buttons">
+            <button onclick="clearResult()">C</button>
+            <button onclick="deleteLastChar()">&larr;</button>
+            <button onclick="appendChar('(')">(</button>
+            <button onclick="appendChar(')')">)</button>
+            <button onclick="appendChar('7')">7</button>
+            <button onclick="appendChar('8')">8</button>
+            <button onclick="appendChar('9')">9</button>
+            <button onclick="appendChar('/')">/</button>
+            <button onclick="appendChar('4')">4</button>
+            <button onclick="appendChar('5')">5</button>
+            <button onclick="appendChar('6')">6</button>
+            <button onclick="appendChar('*')">*</button>
+            <button onclick="appendChar('1')">1</button>
+            <button onclick="appendChar('2')">2</button>
+            <button onclick="appendChar('3')">3</button>
+            <button onclick="appendChar('-')">-</button>
+            <button onclick="appendChar('.')">.</button>
+            <button onclick="appendChar('0')">0</button>
+            <button onclick="calculateResult()">=</button>
+            <button onclick="appendChar('+')">+</button>
+            <button onclick="calculateSquare()">x²</button>
+            <button onclick="calculateSquareRoot()">√</button>
+            <button onclick="calculatesin()">sin</button>
+            <button onclick="calculatecos()">cos</button>
+        </div>
+        <h1>Wangxinyi's calculator</h1>
+    </div>
+</body>
+<script>
+
+function clearResult() {
+    document.getElementById("result").value = '';
+}
+
+function deleteLastChar() {
+    let result = document.getElementById("result").value;
+    document.getElementById("result").value = result.slice(0, -1);
+}
+
+function appendChar(char) {
+    let result = document.getElementById("result").value;
+    document.getElementById("result").value = result + char;
+}
+
+function calculateResult() {
+    let result = document.getElementById("result").value;
+    let calculatedResult = eval(result);
+    document.getElementById("result").value = calculatedResult;
+}
+
+function calculateSquare() {
+    let result = document.getElementById("result").value;
+    let calculatedResult = eval(result) ** 2;
+    document.getElementById("result").value = calculatedResult;
+}
+
+function calculateSquareRoot() {
+    let result = document.getElementById("result").value;
+    let calculatedResult = Math.sqrt(eval(result));
+    document.getElementById("result").value = calculatedResult;
+}
+
+function calculateCos() {
+    let result = document.getElementById("result").value;
+    let calculatedResult= Math.cos(eval(result.value));
+    document.getElementById("result").value = calculatedResult;
+    
+  }
+
+
+function calculateSin() {
+    let result = document.getElementById("result").value;
+    let calculatedResult= Math.sin(eval(result.value));
+    document.getElementById("result").value = calculatedResult;
+}
+</script>
+
+</html>
