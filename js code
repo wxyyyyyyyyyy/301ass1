@@ -1,0 +1,47 @@
+
+function clearResult() {
+    document.getElementById("result").value = '';
+}
+
+function deleteLastChar() {
+    let result = document.getElementById("result").value;
+    document.getElementById("result").value = result.slice(0, -1);
+}
+
+function appendChar(char) {
+    let result = document.getElementById("result").value;
+    document.getElementById("result").value = result + char;
+}
+
+function calculateResult() {
+    let result = document.getElementById("result").value;
+    let calculatedResult = eval(result);
+    document.getElementById("result").value = calculatedResult;
+}
+
+function calculateSquare() {
+    let result = document.getElementById("result").value;
+    let calculatedResult = eval(result) ** 2;
+    document.getElementById("result").value = calculatedResult;
+}
+
+function calculateSquareRoot() {
+    let result = document.getElementById("result").value;
+    let calculatedResult = Math.sqrt(eval(result));
+    document.getElementById("result").value = calculatedResult;
+}
+
+function calculateCos() {
+    let result = document.getElementById("result").value;
+    let calculatedResult= Math.cos(eval(result.value));
+    document.getElementById("result").value = calculatedResult;
+    
+  }
+
+
+function calculateSin() {
+    let result = document.getElementById("result").value;
+    let calculatedResult= Math.sin(eval(result.value));
+    document.getElementById("result").value = calculatedResult;
+}
+</script>
