@@ -1,4 +1,7 @@
 
+<script>
+
+let result = document.getElementById('result');
 function clearResult() {
     document.getElementById("result").value = '';
 }
@@ -17,8 +20,17 @@ function calculateResult() {
     let result = document.getElementById("result").value;
     let calculatedResult = eval(result);
     document.getElementById("result").value = calculatedResult;
+    
+    // 将历史记录保存到localStorage中
+    let history = localStorage.getItem("history");
+    if (history) {
+        history = JSON.parse(history);
+    } else {
+        history = [];
+    }
+    history.push(result + " = " + calculatedResult);
+    localStorage.setItem("history", JSON.stringify(history));
 }
-
 function calculateSquare() {
     let result = document.getElementById("result").value;
     let calculatedResult = eval(result) ** 2;
@@ -32,16 +44,94 @@ function calculateSquareRoot() {
 }
 
 function calculateCos() {
-    let result = document.getElementById("result").value;
-    let calculatedResult= Math.cos(eval(result.value));
-    document.getElementById("result").value = calculatedResult;
-    
+  try {
+    result.value = Math.cos(eval(result.value));
+  } catch (error) {
+    result.value = 'ERROR';
   }
-
+}
 
 function calculateSin() {
+  try {
+    result.value = Math.sin(eval(result.value));
+  } catch (error) {
+    result.value = 'ERROR';
+  }
+}
+
+function calculateTan() {
+  try {
+    result.value = Math.tan(eval(result.value));
+  } catch (error) {
+    result.value = 'ERROR';
+  }
+}
+
+function calculateLog10() {
     let result = document.getElementById("result").value;
-    let calculatedResult= Math.sin(eval(result.value));
+    let calculatedResult = Math.log10(eval(result));
     document.getElementById("result").value = calculatedResult;
 }
+
+function calculateLn() {
+    let result = document.getElementById("result").value;
+    let calculatedResult = Math.log(eval(result));
+    document.getElementById("result").value = calculatedResult;
+}
+
+function calculateModulus() {
+  try {
+    result.value = eval(result.value) % 1;
+  } catch (error) {
+    result.value = 'ERROR';
+  }
+}
+
+function calculateScientificNotation() {
+  try {
+    result.value = eval(result.value).toExponential();
+  } catch (error) {
+    result.value = 'ERROR';
+  }
+}
+function calculatePower() {
+    let result = document.getElementById("result").value;
+    let parts = result.split('^');
+    if (parts.length === 2) {
+        let base = parseFloat(parts[0]);
+        let exponent = parseFloat(parts[1]);
+        let calculatedResult = Math.pow(base, exponent);
+        document.getElementById("result").value = calculatedResult;
+    }
+}
+function calculateInverse() {
+    let result = document.getElementById("result").value;
+    let calculatedResult = 1 / eval(result);
+    document.getElementById("result").value = calculatedResult;
+}
+
+function displayHistory() {
+    let history = localStorage.getItem("history");
+    if (history) {
+        history = JSON.parse(history);
+    } else {
+        history = [];
+    }
+    
+    let historyList = document.getElementById("history-list");
+    historyList.innerHTML = "";
+    
+    for (let i = 0; i < history.length; i++) {
+        let item = document.createElement("li");
+        item.textContent = history[i];
+        historyList.appendChild(item);
+    }
+}
+function clearHistory() {
+    localStorage.removeItem("history");
+    displayHistory();
+}
 </script>
+
+
+
