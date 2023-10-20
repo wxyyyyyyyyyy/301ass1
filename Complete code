@@ -1,237 +1,282 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <title>王心怡的计算器</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
+  <title>王心怡的计算器</title>
+    <script src="https://unpkg.com/jquery@3.6.0/dist/jquery.min.js"></script>
+
 </head>
 
 <style>
   body {
-      font-family: Arial, sans-serif;
-      background-color: #78b6e9c0;
-      text-align: center;
+    font-family: Arial, sans-serif;
+    background-color: #78b6e9c0;
+    text-align: center;
   }
 
   .calculator {
-      width: 300px;
-      margin: 200px auto;
-      padding: 20px;
-      font-family: Arial, sans-serif;
-      text-align: center;
-      background-color: pink;
-      box-shadow: 0 0 10px rgb(146, 84, 201);
+    width: 300px;
+    margin: 200px auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: pink;
+    box-shadow: 0 0 10px rgb(146, 84, 201);
   }
 
   #result {
-      width: 100%;
-      margin-bottom: 10px;
-      padding: 5px;
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 5px;
   }
+
   .buttons {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-gap: 5px;
-}
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 5px;
+  }
 
-button {
-  padding: 5px;
-  background-color: #ffffff;
-  border: none;
-  cursor: pointer;
-}
+  button {
+    padding: 5px;
+    background-color: #ffffff;
+    border: none;
+    cursor: pointer;
+  }
 
-button:hover {
-  background-color: #ff00956c;
-  color: #ffffff;
-}
+  button:hover {
+    background-color: #ff00956c;
+    color: #ffffff;
+  }
 
-button.digit {
-  background-color: #ff7b1d;
-  color: #ffffff;
-}
+  button.digit {
+    background-color: #ff7b1d;
+    color: #ffffff;
+  }
 
-button.digit:hover {
-  background-color: #c9500a;
-}
+  button.digit:hover {
+    background-color: #c9500a;
+  }
 </style>
+
 <body onload="displayHistory()">
   <div class="calculator">
-      <input type="text" id="result" readonly>
-      <div class="buttons">
-        <button onclick="clearResult()">C</button>
-        <button onclick="deleteLastChar()">&larr;</button>
-        <button onclick="appendChar('(')">(</button>
-        <button onclick="appendChar(')')">)</button>
-        <button onclick="appendChar('7')" class="digit">7</button>
-        <button onclick="appendChar('8')" class="digit">8</button>
-        <button onclick="appendChar('9')" class="digit">9</button>
-        <button onclick="appendChar('/')">/</button>
-        <button onclick="appendChar('4')" class="digit">4</button>
-        <button onclick="appendChar('5')" class="digit">5</button>
-        <button onclick="appendChar('6')" class="digit">6</button>
-        <button onclick="appendChar('*')">*</button>
-        <button onclick="appendChar('1')" class="digit">1</button>
-        <button onclick="appendChar('2')" class="digit">2</button>
-        <button onclick="appendChar('3')" class="digit">3</button>
-        <button onclick="appendChar('-')">-</button>
-        <button onclick="appendChar('.')">.</button>
-        <button onclick="appendChar('0')" class="digit">0</button>
-        <button onclick="calculateInverse()">1/x</button>
-        <button onclick="appendChar('+')">+</button>
-        <button onclick="calculateCos()">Cos</button>
-        <button onclick="calculateSquare()">x²</button>
-        <button onclick="calculateSquareRoot()">√</button>
-        <button onclick="calculateModulus()">%</button>
-        <button onclick="calculateSin()">Sin</button>
-        <button onclick="calculateTan()">Tan</button>
-        <button onclick="calculateLog10()">Log10</button>
-        <button onclick="calculateLn()">Ln</button>
-        <button onclick="appendChar('^')">^</button>
-        <button onclick="calculatePower()">Power</button>
-        <button onclick="calculateScientificNotation()">Scientific</button>
-        <button onclick="calculateResult()">=</button>
-          <button onclick="calculateResult()">=</button>
-      </div>
+    <!-- <input type="text" id="expression"> -->
+    <input type="text" id="result" readonly>
+    <div class="buttons">
+      <button onclick="clearResult()">C</button>
+      <button onclick="deleteLastChar()">&larr;</button>
+      <button onclick="appendChar('(')">(</button>
+      <button onclick="appendChar(')')">)</button>
+      <button onclick="appendChar('7')" class="digit">7</button>
+      <button onclick="appendChar('8')" class="digit">8</button>
+      <button onclick="appendChar('9')" class="digit">9</button>
+      <button onclick="appendChar('/')">/</button>
+      <button onclick="appendChar('4')" class="digit">4</button>
+      <button onclick="appendChar('5')" class="digit">5</button>
+      <button onclick="appendChar('6')" class="digit">6</button>
+      <button onclick="appendChar('*')">*</button>
+      <button onclick="appendChar('1')" class="digit">1</button>
+      <button onclick="appendChar('2')" class="digit">2</button>
+      <button onclick="appendChar('3')" class="digit">3</button>
+      <button onclick="appendChar('-')">-</button>
+      <button onclick="appendChar('.')">.</button>
+      <button onclick="appendChar('0')" class="digit">0</button>
+      <button onclick="calculateInverse()">1/x</button>
+      <button onclick="appendChar('+')">+</button>
+      <button onclick="calculateCos()">Cos</button>
+      <button onclick="calculateSquare()">x²</button>
+      <button onclick="calculateSquareRoot()">√</button>
+      <button onclick="appendChar('%')">%</button>
+      <button onclick="calculateSin()">Sin</button>
+      <button onclick="calculateTan()">Tan</button>
+      <button onclick="calculateLog10()">Log10</button>
+      <button onclick="calculateLn()">Ln</button>
+      <button onclick="appendChar('^')">^</button>
+      <button onclick="calculatePower()">Power</button>
+      <button onclick="calculateScientificNotation()">Scientific</button>
+      <button onclick="calculateResult()">=</button>
+      <button onclick="calculateResult()">ans</button>
+    </div>
   </div>
-  
+
   <h2>History</h2>
   <ul id="history-list"></ul>
-  
+
   <button onclick="clearHistory()">Clear history</button>
 </body>
 
 <script>
 
-let result = document.getElementById('result');
-function clearResult() {
+  let result = document.getElementById('result');
+  function clearResult() {
     document.getElementById("result").value = '';
-}
+  }
 
-function deleteLastChar() {
+  function deleteLastChar() {
     let result = document.getElementById("result").value;
     document.getElementById("result").value = result.slice(0, -1);
-}
+  }
 
-function appendChar(char) {
+  function appendChar(char) {
     let result = document.getElementById("result").value;
     document.getElementById("result").value = result + char;
-}
+  }
 
-function calculateResult() {
+  function calculateResult() {
     let result = document.getElementById("result").value;
     let calculatedResult = eval(result);
     document.getElementById("result").value = calculatedResult;
-    
+    saveResult(result, calculatedResult);
+
     // 将历史记录保存到localStorage中
     let history = localStorage.getItem("history");
     if (history) {
-        history = JSON.parse(history);
+      history = JSON.parse(history);
     } else {
-        history = [];
+      history = [];
     }
     history.push(result + " = " + calculatedResult);
     localStorage.setItem("history", JSON.stringify(history));
-}
-function calculateSquare() {
+  }
+  function calculateSquare() {
     let result = document.getElementById("result").value;
     let calculatedResult = eval(result) ** 2;
     document.getElementById("result").value = calculatedResult;
-}
+  }
 
-function calculateSquareRoot() {
+  function calculateSquareRoot() {
     let result = document.getElementById("result").value;
     let calculatedResult = Math.sqrt(eval(result));
     document.getElementById("result").value = calculatedResult;
-}
-
-function calculateCos() {
-  try {
-    result.value = Math.cos(eval(result.value));
-  } catch (error) {
-    result.value = 'ERROR';
   }
-}
 
-function calculateSin() {
-  try {
-    result.value = Math.sin(eval(result.value));
-  } catch (error) {
-    result.value = 'ERROR';
+  function calculateCos() {
+    try {
+      result.value = Math.cos(eval(result.value));
+    } catch (error) {
+      result.value = 'ERROR';
+    }
   }
-}
 
-function calculateTan() {
-  try {
-    result.value = Math.tan(eval(result.value));
-  } catch (error) {
-    result.value = 'ERROR';
+  function calculateSin() {
+    try {
+      result.value = Math.sin(eval(result.value));
+    } catch (error) {
+      result.value = 'ERROR';
+    }
   }
-}
 
-function calculateLog10() {
+  function calculateTan() {
+    try {
+      result.value = Math.tan(eval(result.value));
+    } catch (error) {
+      result.value = 'ERROR';
+    }
+  }
+
+  function calculateLog10() {
     let result = document.getElementById("result").value;
     let calculatedResult = Math.log10(eval(result));
     document.getElementById("result").value = calculatedResult;
-}
+  }
 
-function calculateLn() {
+  function calculateLn() {
     let result = document.getElementById("result").value;
     let calculatedResult = Math.log(eval(result));
     document.getElementById("result").value = calculatedResult;
-}
-
-function calculateModulus() {
-  try {
-    result.value = eval(result.value) % 1;
-  } catch (error) {
-    result.value = 'ERROR';
   }
-}
 
-function calculateScientificNotation() {
-  try {
-    result.value = eval(result.value).toExponential();
-  } catch (error) {
-    result.value = 'ERROR';
+  function calculateScientificNotation() {
+    try {
+      result.value = eval(result.value).toExponential();
+    } catch (error) {
+      result.value = 'ERROR';
+    }
   }
-}
-function calculatePower() {
+  function calculatePower() {
     let result = document.getElementById("result").value;
     let parts = result.split('^');
     if (parts.length === 2) {
-        let base = parseFloat(parts[0]);
-        let exponent = parseFloat(parts[1]);
-        let calculatedResult = Math.pow(base, exponent);
-        document.getElementById("result").value = calculatedResult;
+      let base = parseFloat(parts[0]);
+      let exponent = parseFloat(parts[1]);
+      let calculatedResult = Math.pow(base, exponent);
+      document.getElementById("result").value = calculatedResult;
     }
-}
-function calculateInverse() {
+  }
+  function calculateInverse() {
     let result = document.getElementById("result").value;
     let calculatedResult = 1 / eval(result);
     document.getElementById("result").value = calculatedResult;
-}
+  }
 
-function displayHistory() {
-    let history = localStorage.getItem("history");
-    if (history) {
-        history = JSON.parse(history);
-    } else {
-        history = [];
-    }
-    
+  async function displayHistory() {
+    let history = await getPreviousResults()
+    console.log(history, 'history');
     let historyList = document.getElementById("history-list");
     historyList.innerHTML = "";
-    
+
     for (let i = 0; i < history.length; i++) {
-        let item = document.createElement("li");
-        item.textContent = history[i];
-        historyList.appendChild(item);
+      let item = document.createElement("li");
+      item.textContent = `${history[i].expression}=${history[i].result}`;
+      historyList.appendChild(item);
     }
-}
-function clearHistory() {
-    localStorage.removeItem("history");
-    displayHistory();
-}
+  }
+  function clearHistory() {
+    // localStorage.removeItem("history");
+    removeHistory().then(res => {
+      displayHistory();
+    })
+  }
+  function saveResult(expression, result) {
+    $.ajax({
+      url: "http://localhost:3000/saveResult",
+      type: "POST",
+      data: {
+        expression: expression,
+        result: result
+      },
+      success: function (response) {
+        console.log(response);
+        displayHistory()
+      },
+      error: function () {
+        console.log("Error saving result");
+      }
+    });
+  }
+
+  function getPreviousResults() {
+    return new Promise((resolve, reject) => {
+      $.ajax({
+        url: "http://localhost:3000/getPreviousResults",
+        type: "GET",
+        success: function (response) {
+          console.log(response);
+          resolve(response)
+        },
+        error: function () {
+          reject()
+          console.log("Error getting previous results");
+        }
+      });
+    })
+  }
+  function removeHistory() {
+    return new Promise((resolve, reject) => {
+      $.ajax({
+        url: "http://localhost:3000/removePreviousResults",
+        type: "POST",
+        success: function (response) {
+          console.log(response);
+          resolve(response)
+        },
+        error: function () {
+          reject()
+          console.log("Error getting previous results");
+        }
+      });
+    })
+  }
 </script>
 
 </html>
