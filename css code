@@ -1,50 +1,51 @@
 
 <style>
   body {
-      font-family: Arial, sans-serif;
-      background-color: #78b6e9c0;
-      text-align: center;
+    font-family: Arial, sans-serif;
+    background-color: #78b6e9c0;
+    text-align: center;
   }
 
   .calculator {
-      width: 300px;
-      margin: 200px auto;
-      padding: 20px;
-      font-family: Arial, sans-serif;
-      text-align: center;
-      background-color: pink;
-      box-shadow: 0 0 10px rgb(146, 84, 201);
+    width: 300px;
+    margin: 200px auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: pink;
+    box-shadow: 0 0 10px rgb(146, 84, 201);
   }
 
   #result {
-      width: 100%;
-      margin-bottom: 10px;
-      padding: 5px;
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 5px;
   }
+
   .buttons {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-gap: 5px;
-}
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 5px;
+  }
 
-button {
-  padding: 5px;
-  background-color: #ffffff;
-  border: none;
-  cursor: pointer;
-}
+  button {
+    padding: 5px;
+    background-color: #ffffff;
+    border: none;
+    cursor: pointer;
+  }
 
-button:hover {
-  background-color: #ff00956c;
-  color: #ffffff;
-}
+  button:hover {
+    background-color: #ff00956c;
+    color: #ffffff;
+  }
 
-button.digit {
-  background-color: #ff7b1d;
-  color: #ffffff;
-}
+  button.digit {
+    background-color: #ff7b1d;
+    color: #ffffff;
+  }
 
-button.digit:hover {
-  background-color: #c9500a;
-}
+  button.digit:hover {
+    background-color: #c9500a;
+  }
 </style>
